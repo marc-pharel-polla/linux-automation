@@ -1,0 +1,43 @@
+---
+- name: Installer Docker sur Fedora
+  hosts: my_fedora_vm
+  become: yes
+  tasks:
+    - name: Mettre à jour le système
+      dnf:
+        name: "*"
+        state: latest
+
+    - name: Installer les dépendances requises pour Docker
+      dnf:
+        name:
+          - dnf-plugins-core
+          - device-mapper-persistent-data
+          - lvm2
+        state: present
+
+    - name: Ajouter le dépôt Docker officiel
+      ansible.builtin.command:
+        cmd: dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+        creates: /etc/yum.repos.d/docker-ce.repo
+
+    - name: Installer Docker
+      dnf:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+        state: present
+
+    - name: Démarrer et activer le service Docker
+      systemd:
+        name: docker
+        enabled: true
+        state: started
+
+    - name: Ajouter l'utilisateur au groupe docker
+      ansible.builtin.user:
+        name: "{{ ansible_user }}"
+        groups: docker
+        append: true
+
