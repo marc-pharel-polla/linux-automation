@@ -1,15 +1,11 @@
 # Linux Automation & Infra Scripts
 
-Ce repository regroupe mes anciens scripts et playbooks provenant de :
-- `bash/`
-- `script-backup/`
-- `script-ansible/`
+Ce repository regroupe mes scripts Linux (Bash), backups et playbooks Ansible, utilisés dans mes projets Cloud et DevOps.
 
-Objectif : portfolio orienté Cloud & DevOps (Linux, automatisation, backups, Ansible, AWS CLI, Docker, etc.)
-
-Les scripts sont organisés dans les sous-dossiers :
-- `bash-scripts/`
-- `backup/`
-- `ansible/`
+## Contenu fusionné
+- Scripts Bash génériques
+- Scripts de backup
+- Playbooks Ansible
 
 De nouveaux fichiers d’automatisation seront ajoutés prochainement.
+
